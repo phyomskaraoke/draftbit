@@ -1,12 +1,13 @@
 {
   "build": {
     "preview": {
-      "android": {
-        "buildType": "apk"
+      "ios": {
+        "buildType": "archive",
+        "appVersionSource": "remote"
       }
     },
     "preview2": {
-      "android": {
+      "ios": {
         "gradleCommand": ":app:assembleRelease"
       }
     },
@@ -16,6 +17,11 @@
     "preview4": {
       "distribution": "internal"
     },
-    "production": {}
+    "production": {
+      "ios": {
+        "appVersionSource": "remote",
+        "distribution": "store"
+      }
+    }
   }
 }
