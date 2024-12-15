@@ -43,13 +43,13 @@
     },
     "icon": "./assets/app/icon.png",
     "name": "Karaoke",
-    "slug": "phyom-karaoke",
+    "slug": "phyom",
     "extra": {
       "eas": {
-        "projectId": ""
+        "projectId": "f8624f74-ea37-4e1c-af18-84aed8c0e70f"
       }
     },
-    "owner": "PHYOMS",
+    "owner": "phyoms",
     "scheme": "untitled-app",
     "splash": {
       "image": "./assets/app/splash.png",
