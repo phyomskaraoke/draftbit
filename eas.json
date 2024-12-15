@@ -1,8 +1,4 @@
 {
-  "cli": {
-    "version": ">= 14.2.0",
-    "appVersionSource": "remote"
-  },
   "build": {
     "preview": {
       "android": {
@@ -21,6 +17,5 @@
       "distribution": "internal"
     },
     "production": {}
-  }
   }
 }
