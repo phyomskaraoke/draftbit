@@ -10,6 +10,8 @@ import {
 import { useIsFocused } from '@react-navigation/native';
 import { Modal, StatusBar } from 'react-native';
 import * as GlobalStyles from '../GlobalStyles.js';
+import * as IFTTTPPCApi from '../apis/IFTTTPPCApi.js';
+import * as GlobalVariables from '../config/GlobalVariableContext';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
@@ -19,20 +21,26 @@ import useWindowDimensions from '../utils/useWindowDimensions';
 const DontStopMeNowScreen = props => {
   const { theme, navigation } = props;
   const dimensions = useWindowDimensions();
+  const Constants = GlobalVariables.useValues();
+  const Variables = Constants;
   const [openModal, setOpenModal] = React.useState(false);
   const isFocused = useIsFocused();
   React.useEffect(() => {
-    try {
-      if (!isFocused) {
-        return;
-      }
-      videoV5fq6RHbRef.current?.play();
+    const handler = async () => {
+      try {
+        if (!isFocused) {
+          return;
+        }
+        videoV5fq6RHbRef.current?.play();
+        (await IFTTTPPCApi.dSMNGET(Constants))?.json;
 
-      const entry = StatusBar.pushStackEntry?.({ barStyle: 'dark-content' });
-      return () => StatusBar.popStackEntry?.(entry);
-    } catch (err) {
-      console.error(err);
-    }
+        const entry = StatusBar.pushStackEntry?.({ barStyle: 'dark-content' });
+        return () => StatusBar.popStackEntry?.(entry);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    handler();
   }, [isFocused]);
   React.useEffect(() => {
     try {
@@ -246,14 +254,11 @@ const DontStopMeNowScreen = props => {
           style={StyleSheet.applyWidth(
             StyleSheet.compose(
               GlobalStyles.VideoPlayerStyles(theme)['Video'].style,
-              {
-                height: { minWidth: Breakpoints.Tablet, value: '90%' },
-                width: { minWidth: Breakpoints.Tablet, value: '100%' },
-              }
+              { height: { minWidth: Breakpoints.Tablet, value: '90%' } }
             ),
             dimensions.width
           )}
-          useNativeControls={true}
+          useNativeControls={false}
         />
       </Pressable>
     </ScreenContainer>

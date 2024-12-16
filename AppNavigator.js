@@ -11,6 +11,7 @@ import LinkingConfiguration from './LinkingConfiguration';
 import DontStopMeNowScreen from './screens/DontStopMeNowScreen';
 import Home2Screen from './screens/Home2Screen';
 import HomeScreen from './screens/HomeScreen';
+import IdleScreen from './screens/IdleScreen';
 import PinkPonyClubScreen from './screens/PinkPonyClubScreen';
 import palettes from './themes/palettes';
 import Breakpoints from './utils/Breakpoints';
@@ -86,7 +87,7 @@ export default function RootAppNavigator() {
                   style={[styles.headerContainer, styles.headerContainerLeft]}
                   onPress={() => {
                     try {
-                      navigation.navigate('HomeScreen');
+                      /* 'Navigate' action requires configuration: choose a navigation destination */
                     } catch (err) {
                       console.error(err);
                     }
@@ -119,7 +120,6 @@ export default function RootAppNavigator() {
           name="HomeScreen"
           component={HomeScreen}
           options={({ navigation }) => ({
-            headerShown: false,
             title: 'Home',
           })}
         />
@@ -127,6 +127,7 @@ export default function RootAppNavigator() {
           name="PinkPonyClubScreen"
           component={PinkPonyClubScreen}
           options={({ navigation }) => ({
+            headerShown: false,
             title: 'Pink Pony Club',
           })}
         />
@@ -134,7 +135,15 @@ export default function RootAppNavigator() {
           name="Home2Screen"
           component={Home2Screen}
           options={({ navigation }) => ({
+            headerShown: false,
             title: 'Home 2',
+          })}
+        />
+        <Stack.Screen
+          name="IdleScreen"
+          component={IdleScreen}
+          options={({ navigation }) => ({
+            title: 'Idle screen',
           })}
         />
       </Stack.Navigator>

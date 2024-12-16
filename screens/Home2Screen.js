@@ -1,20 +1,11 @@
 import React from 'react';
-import {
-  Button,
-  Pressable,
-  ScreenContainer,
-  Square,
-  Timer,
-  VideoPlayer,
-  withTheme,
-} from '@draftbit/ui';
+import { Button, ScreenContainer, Timer, withTheme } from '@draftbit/ui';
 import { useIsFocused } from '@react-navigation/native';
-import { Modal, Text } from 'react-native';
+import { Text } from 'react-native';
 import * as GlobalStyles from '../GlobalStyles.js';
 import palettes from '../themes/palettes';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
-import imageSource from '../utils/imageSource';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
 const defaultProps = { parameter: null };
@@ -135,97 +126,13 @@ const Home2Screen = props => {
         )}
         title={'Pink Pony Club'}
       />
-      <Pressable
-        onPress={() => {
-          try {
-            setPopupvideo(false);
-
-            timerYmYzmzLTRef.current?.reset(undefined);
-
-            timerYmYzmzLTRef.current?.start();
-          } catch (err) {
-            console.error(err);
-          }
-        }}
-        style={StyleSheet.applyWidth(
-          { marginTop: { minWidth: Breakpoints.Tablet, value: 20 } },
-          dimensions.width
-        )}
-      >
-        <Modal
-          animationType={'none'}
-          supportedOrientations={['portrait', 'landscape']}
-          transparent={false}
-          {...StyleSheet.applyWidth(
-            GlobalStyles.ModalStyles(theme)['new 2'].props,
-            dimensions.width
-          )}
-          presentationStyle={StyleSheet.getWidthValue(
-            [{ minWidth: Breakpoints.Tablet, value: 'formSheet' }],
-            dimensions.width
-          )}
-          style={StyleSheet.applyWidth(
-            GlobalStyles.ModalStyles(theme)['new 2'].style,
-            dimensions.width
-          )}
-          transparent={StyleSheet.getWidthValue(
-            [{ minWidth: Breakpoints.Tablet, value: true }],
-            dimensions.width
-          )}
-          visible={popupvideo}
-        >
-          <Square
-            {...GlobalStyles.SquareStyles(theme)['Square'].props}
-            style={StyleSheet.applyWidth(
-              StyleSheet.compose(
-                GlobalStyles.SquareStyles(theme)['Square'].style,
-                {
-                  backgroundColor: {
-                    minWidth: Breakpoints.Tablet,
-                    value: theme.colors.background.brand,
-                  },
-                  zIndex: { minWidth: Breakpoints.Tablet, value: 1 },
-                }
-              ),
-              dimensions.width
-            )}
-          >
-            <VideoPlayer
-              isMuted={false}
-              posterResizeMode={'cover'}
-              rate={1}
-              resizeMode={'cover'}
-              usePoster={false}
-              volume={0.5}
-              {...GlobalStyles.VideoPlayerStyles(theme)['Video'].props}
-              isLooping={true}
-              shouldPlay={true}
-              source={imageSource(
-                ' https://karaokeappdrew.s3.ap-southeast-2.amazonaws.com/Queen+-+Don+t+Stop+Me+Now+(Karaoke+Version).mp4'
-              )}
-              style={StyleSheet.applyWidth(
-                StyleSheet.compose(
-                  GlobalStyles.VideoPlayerStyles(theme)['Video'].style,
-                  {
-                    height: { minWidth: Breakpoints.Tablet, value: '80%' },
-                    width: { minWidth: Breakpoints.Tablet, value: '100%' },
-                    zIndex: { minWidth: Breakpoints.Tablet, value: 1 },
-                  }
-                ),
-                dimensions.width
-              )}
-              useNativeControls={false}
-            />
-          </Square>
-        </Modal>
-      </Pressable>
       <Timer
         countDirection={'up'}
         format={'mm:ss'}
         initialTime={0}
         onTimerEnd={() => {
           try {
-            setPopupvideo(true);
+            navigation.navigate('IdleScreen');
           } catch (err) {
             console.error(err);
           }
